@@ -1,0 +1,82 @@
+# 2. Interfaces e Tipos Personalizados
+
+# **Tipos Personalizados**
+
+Os tipos personalizados no **TypeScript** permitem que você crie seus próprios tipos de dados personalizados. Eles são úteis quando você deseja combinar vários tipos de dados em um tipo único e dar a ele um nome significativo.
+
+Aqui está um exemplo de um tipo personalizado:
+
+```tsx
+// Tipo personalizado para coordenadas
+type Coordinate = {
+  x: number;
+  y: number;
+};
+
+// Função que calcula a distância entre duas coordenadas
+function calculateDistance(pointA: Coordinate, pointB: Coordinate): number {
+  const dx = pointB.x - pointA.x;
+  const dy = pointB.y - pointA.y;
+
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+// Utilizando o tipo personalizado Coordinates
+const point1: Coordinate = { x: 0, y: 0 };
+const point2: Coordinate = { x: 3, y: 4 };
+
+const distance = calculateDistance(point1, point2);
+
+console.log(`Distance between points: ${distance}`);
+```
+
+- **`type Coordinate`** define um tipo personalizado chamado **`Coordinate`** que representa uma coordenada no plano cartesiano. Ele possui duas propriedades: **`x`** e **`y`**, ambas do tipo **`number`**, que representam as coordenadas horizontal e vertical, respectivamente.
+- **`function calculateDistance(pointA: Coordinate, pointB: Coordinate): number { ... }`** é uma função que calcula a distância entre duas coordenadas **`pointA`** e **`pointB`** passadas como argumentos. A função utiliza a fórmula de distância Euclidiana, que é a distância direta entre dois pontos em um plano cartesiano.
+- **`const point1: Coordinate = { x: 0, y: 0 };`** e **`const point2: Coordinate = { x: 3, y: 4 };`** são declarações de variáveis que utilizam o tipo personalizado **`Coordinate`** para representar coordenadas. **`point1`** representa as coordenadas (0, 0) e **`point2`** representa as coordenadas (3, 4).
+- **`const distance = calculateDistance(point1, point2);`** chama a função **`calculateDistance`** com **`point1`** e **`point2`** como argumentos para calcular a distância entre esses pontos e armazena o resultado na variável **`distance`**.
+- **`console.log(`**Distance between points: ${distance}**`);`** exibe a distância calculada no console.
+
+# Interfaces
+
+Uma interface em **TypeScript** é uma maneira de definir um contrato ou um conjunto de regras que um objeto deve seguir. É como um contrato que especifica quais propriedades (campos) e métodos (funções) um objeto deve ter. As interfaces são frequentemente usadas para definir a forma de objetos em seu código.
+
+Aqui está um exemplo de uma interface simples:
+
+```tsx
+**// Interface para representar um carro
+interface Car {
+  brand: string;
+  model: string;
+  year: number;
+  startEngine: () => void;
+}
+
+// Função que recebe um objeto do tipo Car
+function drive(car: Car): void {
+  console.log(`Driving ${car.brand} ${car.model} - ${car.year}`);
+  car.startEngine();
+}
+
+// Implementação da interface Car
+const myCar: Car = {
+  brand: "Toyota",
+  model: "Corolla",
+  year: 2022,
+  startEngine() {
+    console.log("Engine started!");
+  }
+};
+
+// Chamada da função drive com o objeto myCar
+drive(myCar);**
+```
+
+1. **`interface Car { ... }`**: Define uma interface chamada **`Car`** que descreve a estrutura esperada de um objeto que representa um carro. Ela possui quatro propriedades: **`brand`** (marca), **`model`** (modelo), **`year`** (ano) e **`startEngine`** (uma função que não recebe argumentos e não retorna nada).
+2. **`function drive(car: Car): void { ... }`**: Declara uma função chamada **`drive`** que recebe um parâmetro chamado **`car`** do tipo **`Car`**. Essa função não retorna nada (**`void`**). Ela exibe no console informações sobre o carro, incluindo marca, modelo e ano, e depois chama a função **`startEngine`** do objeto **`car`** para iniciar o motor.
+3. **`const myCar: Car = { ... }`**: Cria um objeto **`myCar`** que implementa a interface **`Car`**. Ele contém valores para as propriedades **`brand`**, **`model`**, **`year`**, e a função **`startEngine`**. Este objeto representa um carro específico, no caso, um Toyota Corolla de 2022.
+4. **`drive(myCar);`**: Chama a função **`drive`** com o objeto **`myCar`** como argumento. Isso resulta na exibição das informações do carro no console e na chamada da função **`startEngine`** do objeto **`myCar`**.
+
+# **Quando Usar Interfaces e Tipos Personalizados**
+
+- Use tipos personalizados quando precisar criar um tipo novo e único para uma situação específica, como combinar tipos existentes ou criar tipos mais complexos.
+- Use interfaces quando quiser definir a forma de objetos ou classes em seu código. Elas são mais adequadas para definir contratos para objetos relacionados.

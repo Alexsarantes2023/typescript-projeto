@@ -1,0 +1,44 @@
+# 4. Generics
+
+# O que é?
+
+**Generics** em **TypeScript** são uma maneira flexível de escrever código que funciona com diferentes tipos de dados, mantendo a **segurança de tipos**. Com **generics**, você pode criar funções, classes e interfaces que podem ser parametrizadas com tipos específicos. Isso permite reutilizar código com diferentes tipos de dados, tornando seu código mais **genérico e flexível**.
+
+# Como utilizar?
+
+```tsx
+// Função que obtém o primeiro elemento de um array genérico
+function getFirstElement<T>(data: T[]): T | null {
+  if (!data.length) {
+    return null;
+  }
+
+  const [firstElement] = data;
+
+  return firstElement;
+}
+```
+
+- **`function getFirstElement<T>(data: T[]): T | null { ... }`** é uma função chamada **`getFirstElement`** que usa um tipo genérico **`<T>`**. Isso significa que a função pode trabalhar com qualquer tipo de dados, representado por **`T`**. Ela recebe um argumento **`data`** que é um array de elementos do tipo **`T`**. A função retorna um elemento do tipo **`T`** ou **`null`** se o array estiver vazio.
+- **`if (!data.length) { return null; }`** verifica se o array **`data`** está vazio. Se estiver vazio, a função retorna **`null`**, indicando que não há primeiro elemento para retornar.
+- **`const [firstElement] = data;`** desestrutura o array **`data`** e atribui seu primeiro elemento a uma variável chamada **`firstElement`**.
+- **`return firstElement;`** retorna o **`firstElement`**, que pode ser de qualquer tipo **`T`**, como o primeiro elemento do array.
+
+Depois de definir a função, o código cria dois arrays:
+
+```tsx
+const stringArray: string[] = ['Lucas', 'Fernanda', 'Gabriel', 'Maria'];
+const numberArray: number[] = [1, 2, 3, 4, 5, 6];
+```
+
+- **`stringArray`** é um array de strings e **`numberArray`** é um array de números.
+
+Em seguida, a função **`getFirstElement`** é chamada duas vezes, uma vez com **`stringArray`** e outra vez com **`numberArray`**, especificando o tipo genérico **`T`** como **`string`** e **`number`**, respectivamente:
+
+```tsx
+console.log(getFirstElement<string>(stringArray));
+console.log(getFirstElement<number>(numberArray));
+```
+
+- A primeira chamada **`getFirstElement<string>(stringArray)`** retorna o primeiro elemento do array de strings, que é "Lucas", e o imprime no console.
+- A segunda chamada **`getFirstElement<number>(numberArray)`** retorna o primeiro elemento do array de números, que é 1, e o imprime no console.

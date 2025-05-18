@@ -1,0 +1,43 @@
+# 5. Utility Types
+
+# **O que é?**
+
+Em **TypeScript**, os **utility types** são tipos internos que fornecem funcionalidades úteis para trabalhar com outros tipos. Eles permitem criar novos tipos a partir de tipos existentes de maneira conveniente e reutilizável. Alguns exemplos comuns de utility types incluem **`Partial`**, `Omit` e **`Pick`**.
+
+Por exemplo, o **`Partial`** permite criar um novo tipo tornando todas as propriedades de um tipo existente opcionais. O `Omit` permite omitir um subconjunto de propriedades de um tipo existent. O **`Pick`** permite selecionar um subconjunto de propriedades de um tipo existente.
+
+# Como utilizar?
+
+```tsx
+type User = {
+  id: number;
+  username: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+const user: User = {
+  id: 1,
+  username: 'agustinhopneto',
+  password: 'typescript123',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};
+
+type PartialUser = Partial<User>;
+
+type NewUser = Omit<User, 'id' | 'username'>;
+
+type SearchUser = Pick<User, 'username'>;
+
+const searchUser: SearchUser = {
+  username: 'agustinhopneto',
+};
+```
+
+- Aqui, definimos um tipo **`User`** que representa um usuário com várias propriedades, incluindo **`id`**, **`username`**, **`password`**, **`createdAt`** e **`updatedAt`**. Em seguida, criamos uma variável **`user`** que é uma instância desse tipo.
+- Usando o utility type **`Partial`**, criamos um novo tipo chamado **`PartialUser`**. Esse tipo torna todas as propriedades de **`User`** opcionais, o que significa que você pode criar objetos **`PartialUser`** com algumas ou todas as propriedades de **`User`** sendo **`undefined`**.
+- Com o utility type **`Omit`**, criamos um novo tipo chamado **`NewUser`** que exclui as propriedades **`'id'`** e **`'username'`** de **`User`**. Portanto, um **`NewUser`** só teria as propriedades **`password`**, **`createdAt`** e **`updatedAt`**.
+- Usando o utility type **`Pick`**, definimos um novo tipo **`SearchUser`** que inclui apenas a propriedade **`'username'`** de **`User`**.
+- Finalmente, criamos um objeto **`searchUser`** do tipo **`SearchUser`**, que neste caso inclui apenas a propriedade **`username`**.

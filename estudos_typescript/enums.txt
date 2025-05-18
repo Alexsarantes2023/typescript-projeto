@@ -1,0 +1,62 @@
+# 3. Enums
+
+# O que é?
+
+**Os enums** (enumerações) são um recurso importante em **TypeScript** que permitem definir um conjunto de valores nomeados. Elas são especialmente úteis quando você tem um conjunto fixo de valores que são semanticamente relacionados e deve garantir que esses valores sejam usados de forma consistente em seu código.
+
+## **Benefícios das enums:**
+
+- **Legibilidade:** Enums tornam o código mais legível, pois você pode usar nomes significativos em vez de caracteres ou números mágicos.
+- **Segurança:** Enums ajudam a evitar erros de atribuição de valores incorretos, pois os valores estão restritos aos membros da enumeração.
+- **Manutenção:** Se você precisar adicionar ou remover valores, os enums facilitam a manutenção do código.
+
+# Como utilizar?
+
+```tsx
+// Enum para representar os tipos de gênero
+enum Gender {
+  MALE = "Male",
+  FEMALE = "Female",
+  OTHER = "Other"
+}
+
+// Tipo para representar uma pessoa
+type Person = {
+  name: string;
+  age: number;
+  gender: Gender;
+};
+
+// Função que exibe informações sobre uma pessoa
+function displayPersonInfo(person: Person): void {
+  console.log(`Name: ${person.name}`);
+  console.log(`Age: ${person.age}`);
+  console.log(`Gender: ${person.gender}`);
+}
+
+// Criando objetos do tipo Person
+const person1: Person = {
+  name: "Alex",
+  age: 30,
+  gender: Gender.OTHER
+};
+
+const person2: Person = {
+  name: "Emily",
+  age: 25,
+  gender: Gender.FEMALE
+};
+
+// Exibindo informações sobre as pessoas
+console.log("Person 1:");
+displayPersonInfo(person1);
+
+console.log("Person 2:");
+displayPersonInfo(person2);
+```
+
+- Primeiro, definimos um enum chamado **`Gender`** para representar os tipos de gênero. Ele possui três membros: **`MALE`**, **`FEMALE`** e **`OTHER`**, cada um associado a uma string correspondente.
+- Em seguida, criamos um tipo personalizado chamado **`Person`** que representa a estrutura de uma pessoa. Ele possui três propriedades: **`name`** (nome da pessoa, do tipo string), **`age`** (idade da pessoa, do tipo number) e **`gender`** (gênero da pessoa, do tipo **`Gender`**, que é o enum definido anteriormente).
+- Posteriormente, definimos uma função chamada **`displayPersonInfo`** que recebe um argumento do tipo **`Person`** e exibe informações sobre a pessoa no console, incluindo nome, idade e gênero.
+- Criamos dois objetos, **`person1`** e **`person2`**, do tipo **`Person`**, cada um representando uma pessoa com informações diferentes, incluindo nome, idade e gênero. O gênero é definido usando os membros do enum **`Gender`**.
+- Finalmente, chamamos a função **`displayPersonInfo`** duas vezes, uma vez para **`person1`** e outra para **`person2`**, para exibir as informações sobre essas duas pessoas no console.

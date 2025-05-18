@@ -1,0 +1,92 @@
+# Configurando o TypeScript
+
+## **Passo 1: Configurar um Projeto Node.js**
+
+Antes de instalar o **TypeScript**, certifique-se de que você já tenha um projeto **Node.js** configurado. Se ainda não o fez, siga estes passos:
+
+1. Crie uma pasta para o seu projeto:
+
+```bash
+mkdir meu-projeto-typescript
+```
+
+1. Entre na pasta do projeto:
+
+```bash
+cd meu-projeto-typescript
+```
+
+1. Inicialize um projeto **Node.js.** Isso criará um arquivo **`package.json`** para gerenciar as dependências do projeto:
+
+```bash
+npm init -y
+```
+
+## **Passo 2:** Instalar o TypeScript Localmente
+
+Agora que você tem um projeto **Node.js** configurado, pode instalar o **TypeScript** nele como uma dependência de **desenvolvimento**:
+
+```bash
+// com NPM
+npm install -D typescript
+
+// com Yarn
+yarn add -D typescript
+```
+
+Isso instalará o **TypeScript** no seu projeto e adicionará uma entrada no arquivo **`package.json`** sob a seção **`devDependencies`**:
+
+```json
+"devDependencies": {
+  "typescript": "^5.2.2"
+}
+```
+
+Observe que a **versão pode variar**, dependendo da versão mais **recente** disponível.
+
+## **Passo 3: Configurar o TypeScript**
+
+Para configurar o **TypeScript** no seu projeto, você precisa criar um arquivo **`tsconfig.json`**. Este arquivo contém as opções de configuração para o transpilador **TypeScript**. Você pode criá-lo manualmente ou usar o comando **`tsc --init`** para gerar um arquivo de configuração padrão:
+
+```bash
+// com NPM
+npx tsc --init
+
+// com Yarn
+yarn tsc --init
+```
+
+Depois de executar este comando, você terá um arquivo **`tsconfig.json`** na raiz do seu projeto.
+
+## **Passo 4: Escrever Código TypeScript**
+
+Agora você está pronto para começar a escrever código TypeScript no seu projeto. Você pode criar arquivos **`.ts`** para seus scripts TypeScript. Por exemplo, crie um arquivo **`app.ts`** e adicione algum código de exemplo:
+
+```tsx
+// app.ts
+function sayHello(name: string) {
+  console.log(`Hello, ${name}!`);
+}
+
+sayHello("John");
+```
+
+## **Passo 5: Transpilar Código TypeScript para JavaScript**
+
+O **TypeScript** precisa ser transpilado para **JavaScript** para que você possa executá-lo no **Node.js**. Você pode fazer isso usando o comando **`tsc`**. Ele usará as configurações do arquivo **`tsconfig.json`** que você criou anteriormente:
+
+```tsx
+// com NPM
+npx tsc
+
+// com Yarn
+yarn tsc
+```
+
+Isso criará um arquivo **`app.js`** na mesma pasta onde você tem seu arquivo **`app.ts`**. Você pode executar este arquivo **JavaScript** usando o **Node.js**:
+
+```bash
+node app.js
+```
+
+Isso é tudo! Você agora tem o **TypeScript** instalado e configurado em seu projeto **Node.js** e pode começar a escrever código **TypeScript** com tipagem estática. Certifique-se de executar o comando **`tsc`** sempre que fizer alterações nos arquivos **TypeScript** para retranspilar seu código.

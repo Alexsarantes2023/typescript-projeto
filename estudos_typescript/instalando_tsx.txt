@@ -1,0 +1,39 @@
+# Instalando o tsx
+
+Com o `tsx`, você pode executar arquivos **TypeScript** (com a extensão **`.ts`**) diretamente no **Node.js**, e ele cuidará da transpilação em tempo de execução, garantindo que o código **TypeScript** seja traduzido para **JavaScript** antes da execução. Isso facilita o desenvolvimento e a depuração de aplicativos **TypeScript**, pois você pode ver imediatamente os resultados das alterações no código sem precisar executar manualmente um processo de compilação separado.
+
+## Instalação Local
+
+Para instalar o `tsx` em seu projeto, instale-o como dependência de desenvolvimento:
+
+```bash
+// com NPM
+npm install -D tsx
+
+// com Yarn
+yarn add -D tsx
+```
+
+## Utilizando tsx
+
+Para utilizar, utilize o comando no terminal:
+
+```bash
+// com NPM
+npx tsx ./app.ts
+
+// com Yarn
+yarn tsx ./app.ts
+```
+
+Se preferir, pode criar um `script` no `package.json`:
+
+```bash
+{
+	[...]
+		"scripts": {
+		  "dev": "tsx"
+		}
+	[...]
+}
+```

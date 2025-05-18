@@ -1,0 +1,231 @@
+//aula01
+Material de apoio: 
+https://www.notion.so/TypeScript-9b84b937c27a49dcb579afbb72238411
+
+https://devclub.notion.site/Introdu-o-ao-TypeScript-0161e65adaed411d807416f9f18c54cd?pvs=143
+
+https://devclub.notion.site/Materiais-de-APOIO-57c8b47e3e284583b0a54cdd941c9550
+
+
+//aula02
+//explicação de tipagem com a função de raiz quadrada abaixo.
+function quadrado(num:number):number{
+    return Math.pow(num,2)
+}
+quadrado(200)
+
+//-----------------------------------------------
+//ou nao retorna nada void:
+function quadrado(num:number): void{
+    console.log(Math.pow(num,2))
+}
+quadrado(200)
+
+//--------fim------------------------------------
+
+//aula03
+
+npm init -y
+
+npm install typescript --save-dev
+
+//criando arquivo padrão de configuração do typescript
+npx tsc --init
+
+configurar dentro do arquivo tsconfig.json "target": "ES2020", que é a verrsão do 
+javascript que o typescript vai gerar.
+
+----------------------------------------------------------------------------------
+//criando pasta src 
+
+//gerando o arquivo js atraves do  typescript
+npx tsc src/index.ts
+
+//rodando o projeto
+node src/index.js
+
+
+instalando a biblioteca tsx ajudando o live/reload
+npm install -D tsx
+
+//rodando com a nova ferramenta tsx
+npx tsx src/index.ts
+
+//rodando com live reload
+tsx watch ./file.ts 
+npx tsx watch src/index.ts
+
+//===============================================================
+//Tipagem Estatica
+
+let idade: number = 30;
+
+
+// Tipos primitivos
+let age: number = 25;
+let name: string = "John";
+let isActive: boolean = true;
+
+
+
+// Inferência de tipos
+let animal = "Cat";   // TypeScript automaticamente detecta que "animal" é uma string.
+let quantity = 3;     // TypeScript automaticamente detecta que "quantity" é um número.
+
+
+
+// Anotações de tipos para parâmetros e retorno de função
+function sum(a: number, b: number): number {
+  return a + b;
+}
+
+const result: number = sum(10, 5);
+
+
+
+// Função com retorno opcional
+function greeting(name: string): string | void {
+  if (name) {
+    return `Hello, ${name}!`;
+  }
+}
+
+
+// Exemplo de função com tipagem condicional
+function stringOrNumberSize(value: string | number): number {
+  if (typeof value === "string") {
+    return value.length;
+  }
+  return value;
+}
+
+// Utilizando a função com diferentes tipos
+console.log(stringOrNumberSize("abc")); // Output: 3
+console.log(stringOrNumberSize(42));    // Output: 42
+
+
+
+
+//===============================================================
+// Definindo uma interface
+interface Animal {
+  name: string;
+  speak(): void;
+}
+
+// Implementando a interface em uma classe
+class Dog implements Animal {
+  constructor(public name: string) {}
+
+  speak() {
+    console.log(`${this.name} says woof!`);
+  }
+}
+//===============================================================
+// Enum para representar os tipos de gênero
+enum Gender {
+  MALE = "Male",
+  FEMALE = "Female",
+  OTHER = "Other"
+}
+
+// Tipo para representar uma pessoa
+type Person = {
+  name: string;
+  age: number;
+  gender: Gender;
+};
+
+// Função que exibe informações sobre uma pessoa
+function displayPersonInfo(person: Person): void {
+  console.log(`Name: ${person.name}`);
+  console.log(`Age: ${person.age}`);
+  console.log(`Gender: ${person.gender}`);
+}
+
+// Criando objetos do tipo Person
+const person1: Person = {
+  name: "Alex",
+  age: 30,
+  gender: Gender.OTHER
+};
+
+const person2: Person = {
+  name: "Emily",
+  age: 25,
+  gender: Gender.FEMALE
+};
+
+// Exibindo informações sobre as pessoas
+console.log("Person 1:");
+displayPersonInfo(person1);
+
+console.log("Person 2:");
+displayPersonInfo(person2);
+
+//===============================================================
+
+// Função que obtém o primeiro elemento de um array genérico
+function getFirstElement<T>(data: T[]): T | null {
+  if (!data.length) {
+    return null;
+  }
+
+  const [firstElement] = data;
+
+  return firstElement;
+}
+
+
+
+const stringArray: string[] = ['Lucas', 'Fernanda', 'Gabriel', 'Maria'];
+const numberArray: number[] = [1, 2, 3, 4, 5, 6];
+
+
+
+console.log(getFirstElement<string>(stringArray));
+console.log(getFirstElement<number>(numberArray));
+
+//===============================================================
+
+// 5. Utility Types
+# **O que é?**
+
+Em **TypeScript**, os **utility types** são tipos internos que fornecem funcionalidades 
+úteis para trabalhar com outros tipos. Eles permitem criar novos tipos a partir de tipos 
+existentes de maneira conveniente e reutilizável. Alguns exemplos comuns de utility types 
+incluem **`Partial`**, `Omit` e **`Pick`**.
+
+Por exemplo, o **`Partial`** permite criar um novo tipo tornando todas as propriedades de um 
+tipo existente opcionais. O `Omit` permite omitir um subconjunto de propriedades de um tipo existent. 
+O **`Pick`** permite selecionar um subconjunto de propriedades de um tipo existente.
+
+type User = {
+  id: number;
+  username: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+const user: User = {
+  id: 1,
+  username: 'agustinhopneto',
+  password: 'typescript123',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};
+
+type PartialUser = Partial<User>;
+
+type NewUser = Omit<User, 'id' | 'username'>;
+
+type SearchUser = Pick<User, 'username'>;
+
+const searchUser: SearchUser = {
+  username: 'agustinhopneto',
+};
+
+
+
+

@@ -1,0 +1,108 @@
+# 1. Tipagem Estática
+
+A **tipagem estática** é um sistema de tipos em que os tipos das variáveis são definidos **durante a fase de desenvolvimento** e verificados em tempo de **transpilação**, antes mesmo de você executar o código. Isso significa que, quando você declara uma variável ou uma função, você especifica o tipo de dado que ela pode armazenar ou retornar.
+
+Por exemplo, em **TypeScript**, você pode declarar uma variável do tipo **`number`** para armazenar números inteiros ou de ponto flutuante:
+
+```tsx
+let idade: number = 30;
+```
+
+Nesse exemplo, a variável **`idade`** é declarada como do tipo **`number`**, o que significa que ela só pode conter valores numéricos. Se você tentar atribuir uma string ou outro tipo de dado a essa variável, o **TypeScript** emitirá um erro em tempo de **transpilação**.
+
+## **Por que a Tipagem Estática é Importante?**
+
+### 1. Detecção Antecipada de Erros
+
+A tipagem estática permite que o **TypeScript** verifique seu código em busca de erros de tipo em tempo de transpilação. Isso significa que você pode detectar e corrigir erros antes mesmo de executar o código, o que torna seu código mais confiável e evita problemas em tempo de execução.
+
+### 2. **Melhor Documentação**
+
+A tipagem estática fornece uma forma de documentação embutida no código. Quando você declara o tipo de uma variável ou parâmetro de função, está comunicando explicitamente a intenção do uso dessa variável. Isso torna seu código mais legível e compreensível para você e outros desenvolvedores que trabalham no projeto.
+
+### 3. **Ferramentas de Desenvolvimento Avançadas**
+
+A tipagem estática permite que as ferramentas de desenvolvimento, como editores de código e IDEs, ofereçam recursos avançados, como autocompletar, sugestões de código e verificação de erros em tempo real. Isso aumenta a produtividade do desenvolvedor.
+
+### 4. **Refatoração Segura**
+
+Com tipos definidos, você pode realizar refatorações com confiança, sabendo que o **TypeScript** ajudará a garantir que as alterações não causem erros inesperados em outras partes do código.
+
+## Utilizando tipagem estática
+
+### 1. Tipos primitivos
+
+```tsx
+// Tipos primitivos
+let age: number = 25;
+let name: string = "John";
+let isActive: boolean = true;
+```
+
+1. **`let age: number = 25;`**: Declara uma variável chamada **`age`** que só pode conter números e atribui o valor **`25`** a ela.
+2. **`let name: string = "John";`**: Declara uma variável chamada **`name`** que só pode conter texto (cadeia de caracteres) e atribui o valor **`"John"`** a ela.
+3. **`let isActive: boolean = true;`**: Declara uma variável chamada **`isActive`** que só pode conter valores booleanos (verdadeiro ou falso) e atribui o valor **`true`** a ela.
+
+### 2. Inferência de Tipos
+
+```tsx
+// Inferência de tipos
+let animal = "Cat";   // TypeScript automaticamente detecta que "animal" é uma string.
+let quantity = 3;     // TypeScript automaticamente detecta que "quantity" é um número.
+```
+
+Neste código, o **TypeScript** faz a inferência de tipos, o que significa que ele consegue automaticamente identificar o tipo de dados das variáveis **`animal`** e **`quantity`** com base nos valores atribuídos a elas.
+
+- Para **`animal`**, como atribuímos um valor de texto **`"Cat"`**, o TypeScript infere que é uma variável do tipo **`string`**.
+- Para **`quantity`**, como atribuímos o número **`3`**, o TypeScript infere que é uma variável do tipo **`number`**.
+
+### 3. Tipos para parâmetros e retorno de função
+
+```tsx
+// Anotações de tipos para parâmetros e retorno de função
+function sum(a: number, b: number): number {
+  return a + b;
+}
+
+const result: number = sum(10, 5);
+```
+
+- **`function sum(a: number, b: number): number { ... }`** declara uma função chamada **`sum`** que recebe dois parâmetros, **`a`** e **`b`**, ambos do tipo **`number`** (número), e retorna um valor do tipo **`number`**. Isso significa que a função só aceitará números como entrada e sempre retornará um número.
+- **`const result: number = sum(10, 5);`** chama a função **`sum`** com os argumentos **`10`** e **`5`** e atribui o resultado a uma variável chamada **`result`**, garantindo que **`result`** seja do tipo **`number`**.
+
+### 4. Função com retorno opcional
+
+```tsx
+// Função com retorno opcional
+function greeting(name: string): string | void {
+  if (name) {
+    return `Hello, ${name}!`;
+  }
+}
+```
+
+- **`function greeting(name: string): string | void { ... }`** é uma função chamada **`greeting`** que recebe um parâmetro **`name`** do tipo **`string`** (cadeia de caracteres).
+- A função pode retornar duas coisas:
+    1. Se **`name`** for fornecido (ou seja, não for uma string vazia ou nula), a função retornará uma string que representa uma saudação personalizada.
+    2. Se **`name`** não for fornecido (ou seja, for uma string vazia ou nula), a função não retornará nada (representado por **`void`**).
+
+### 5. Tipagem condicional de funções
+
+```tsx
+// Exemplo de função com tipagem condicional
+function stringOrNumberSize(value: string | number): number {
+  if (typeof value === "string") {
+    return value.length;
+  }
+  return value;
+}
+
+// Utilizando a função com diferentes tipos
+console.log(stringOrNumberSize("abc")); // Output: 3
+console.log(stringOrNumberSize(42));    // Output: 42
+```
+
+- **`function stringOrNumberSize(value: string | number): number { ... }`** é uma função chamada **`stringOrNumberSize`** que recebe um parâmetro chamado **`value`**, que pode ser uma **`string`** ou um **`number`**.
+- Dentro da função, há uma verificação condicional usando **`typeof`** para determinar se **`value`** é do tipo **`string`**. Se for uma **`string`**, a função retorna o comprimento da string usando **`.length`**.
+- Se **`value`** não for uma **`string`**, ele é assumido como um **`number`**, e a função simplesmente retorna o próprio **`value`**.
+- Quando a função é usada com diferentes tipos, como **`string`** ou **`number`**, ela retorna o comprimento da string se for uma string ou o número diretamente se for um número.
